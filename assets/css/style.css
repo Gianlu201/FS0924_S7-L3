@@ -1,0 +1,20 @@
+.card {
+  max-width: 18rem !important;
+  min-height: 630px;
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-box-direction: vertical;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.category {
+  font-size: 0.8em !important;
+}
+
+.card-img-top {
+  max-height: 426px !important;
+}
