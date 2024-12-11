@@ -113,7 +113,7 @@ function add(myAsin) {
       break;
     }
   }
-  localStorage.setItem('myCart', JSON.stringify(myCart));
+
   loadCart();
 }
 
@@ -129,6 +129,7 @@ function remove(myAsin) {
 }
 
 function loadCart() {
+  localStorage.setItem('myCart', JSON.stringify(myCart));
   collapseCart.innerHTML = '';
 
   const myH4 = document.createElement('h4');
