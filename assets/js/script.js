@@ -131,6 +131,10 @@ function remove(myAsin) {
 function loadCart() {
   collapseCart.innerHTML = '';
 
+  const myH4 = document.createElement('h4');
+  myH4.innerText = `Totale: €${calculateTotal()}`;
+  collapseCart.appendChild(myH4);
+
   for (let i = 0; i < myCart.length; i++) {
     const myCard = document.createElement('div');
     myCard.classList.add('card', 'mb-3');
@@ -182,7 +186,6 @@ function loadCart() {
     collapseCart.appendChild(myCard);
   }
 
-  console.log(cartCounter);
   updateCartCounter();
 }
 
@@ -206,4 +209,13 @@ function updateCartCounter() {
     cartCounterArea.removeAttribute('hidden');
     cartCounterArea.innerText = cartCounter;
   }
+}
+
+function calculateTotal() {
+  let total = 0;
+  for (let i = 0; i < myCart.length; i++) {
+    total += parseFloat(myCart[i].price);
+  }
+  return Math.floor(total * 100) / 100;
+  // return total;
 }
