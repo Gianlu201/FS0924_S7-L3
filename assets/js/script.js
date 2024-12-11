@@ -96,19 +96,21 @@ function loadList() {
       const myBtnAdd = document.createElement('button');
       myBtnAdd.classList.add('add', 'btn', 'btn-danger');
       myBtnAdd.innerText = 'Compra ora';
-      myBtnAdd.addEventListener('click', (e) => {
-        e.preventDefault();
-        add(myList[i].asin);
-      });
+      // myBtnAdd.addEventListener('click', (e) => {
+      //   e.preventDefault();
+      //   add(myList[i].asin);
+      // });
+      myBtnAdd.setAttribute('onclick', `add('${myList[i].asin}')`);
       myDiv.appendChild(myBtnAdd);
 
       const myBtnRemove = document.createElement('button');
       myBtnRemove.classList.add('remove', 'btn', 'btn-outline-danger', 'ms-3');
       myBtnRemove.innerText = 'Scarta';
-      myBtnRemove.addEventListener('click', (e) => {
-        e.preventDefault();
-        remove(myList[i].asin);
-      });
+      // myBtnRemove.addEventListener('click', (e) => {
+      //   e.preventDefault();
+      //   remove(myList[i].asin);
+      // });
+      myBtnRemove.setAttribute('onclick', `remove('${myList[i].asin}')`);
       myDiv.appendChild(myBtnRemove);
 
       myCard.appendChild(myDiv);
@@ -120,8 +122,9 @@ function loadList() {
 
 function add(myAsin) {
   cartCounter++;
+  console.log(myAsin);
   for (let i = 0; i < myList.length; i++) {
-    if (myList[i].asin === myAsin) {
+    if (myList[i].asin === `${myAsin}`) {
       myCart.push(myList[i]);
       break;
     }
@@ -132,7 +135,7 @@ function add(myAsin) {
 
 function remove(myAsin) {
   for (let i = 0; i < myList.length; i++) {
-    if (myList[i].asin === myAsin) {
+    if (myList[i].asin === `${myAsin}`) {
       myList.splice(i, 1);
       break;
     }
@@ -184,11 +187,12 @@ function loadCart() {
     const myBtnRemove = document.createElement('button');
     myBtnRemove.classList.add('btn', 'btn-danger', 'text-white');
     myBtnRemove.innerHTML = `<i class="bi bi-trash-fill"></i>`;
-    myBtnRemove.addEventListener('click', (e) => {
-      e.preventDefault();
-      cartCounter--;
-      removeFromCart(myCart[i].asin);
-    });
+    // myBtnRemove.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   cartCounter--;
+    //   removeFromCart(myCart[i].asin);
+    // });
+    myBtnRemove.setAttribute('onclick', `removeFromCart('${myCart[i].asin}')`);
     myDiv.appendChild(myBtnRemove);
 
     myCol2.appendChild(myDiv);
@@ -204,8 +208,9 @@ function loadCart() {
 }
 
 function removeFromCart(myAsin) {
+  cartCounter--;
   for (let i = 0; i < myCart.length; i++) {
-    if (myCart[i].asin === myAsin) {
+    if (myCart[i].asin === `${myAsin}`) {
       myCart.splice(i, 1);
       break;
     }

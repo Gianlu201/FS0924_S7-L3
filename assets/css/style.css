@@ -38,6 +38,7 @@ main .card-img-top {
 #collapseCart {
   max-height: 400px;
   overflow-y: scroll;
+  width: 350px;
 }
 
 #collapseCart .card {
