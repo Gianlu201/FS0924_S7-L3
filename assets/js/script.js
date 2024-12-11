@@ -1,13 +1,16 @@
 const url = 'https://striveschool-api.herokuapp.com/books';
 const contentBox = document.getElementById('contentBox');
 const collapseCart = document.getElementById('collapseCart');
+const cartCounterArea = document.getElementById('cartCounterArea');
 let myList = [];
 const myCart = [];
+let cartCounter;
 
 document.addEventListener('load', init());
 
 function init() {
   getList();
+  cartCounter = 0;
 }
 
 async function getList() {
@@ -103,6 +106,7 @@ function loadList() {
 }
 
 function add(myAsin) {
+  cartCounter++;
   for (let i = 0; i < myList.length; i++) {
     if (myList[i].asin === myAsin) {
       myCart.push(myList[i]);
@@ -164,6 +168,7 @@ function loadCart() {
     myBtnRemove.innerHTML = `<i class="bi bi-trash-fill"></i>`;
     myBtnRemove.addEventListener('click', (e) => {
       e.preventDefault();
+      cartCounter--;
       removeFromCart(myCart[i].asin);
     });
     myDiv.appendChild(myBtnRemove);
@@ -176,6 +181,9 @@ function loadCart() {
 
     collapseCart.appendChild(myCard);
   }
+
+  console.log(cartCounter);
+  updateCartCounter();
 }
 
 function removeFromCart(myAsin) {
@@ -187,4 +195,15 @@ function removeFromCart(myAsin) {
   }
 
   loadCart();
+}
+
+function updateCartCounter() {
+  cartCounterArea.innerText = cartCounter;
+
+  if (cartCounter == 0) {
+    cartCounterArea.setAttribute('hidden', 'true');
+  } else {
+    cartCounterArea.removeAttribute('hidden');
+    cartCounterArea.innerText = cartCounter;
+  }
 }
