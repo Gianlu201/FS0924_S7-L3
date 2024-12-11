@@ -10,7 +10,7 @@ document.addEventListener('load', init());
 
 function init() {
   getList();
-  cartCounter = 0;
+  checkCart();
 }
 
 async function getList() {
@@ -32,6 +32,19 @@ async function getList() {
     .catch((error) => {
       console.log(`Errore nella lettura dei dati, errore: ${error}`);
     });
+}
+
+function checkCart() {
+  const recoverCart = JSON.parse(localStorage.getItem('myCart'));
+  if (recoverCart) {
+    for (let i = 0; i < recoverCart.length; i++) {
+      myCart.push(recoverCart[i]);
+    }
+    cartCounter = recoverCart.length;
+    loadCart();
+  } else {
+    cartCounter = 0;
+  }
 }
 
 function loadList() {
