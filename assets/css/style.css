@@ -1,9 +1,9 @@
-.card {
+main .card {
   max-width: 18rem !important;
   min-height: 630px;
 }
 
-.card-title {
+main .card-title {
   display: -webkit-box;
   -webkit-box-direction: vertical;
   -webkit-box-orient: vertical;
@@ -11,10 +11,35 @@
   overflow: hidden;
 }
 
-.category {
+main .category {
   font-size: 0.8em !important;
 }
 
-.card-img-top {
+main .card-img-top {
   max-height: 426px !important;
+}
+
+#cart {
+  position: fixed;
+  top: 30vh;
+  left: 2px;
+}
+
+#cart button {
+  font-size: 2em;
+}
+
+#cart-modal {
+  position: fixed;
+  top: calc(30vh + 60px);
+  left: 0;
+}
+
+#collapseCart {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+#collapseCart .card {
+  max-width: 350px !important;
 }

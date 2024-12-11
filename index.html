@@ -10,6 +10,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
@@ -36,6 +40,39 @@
         </div> -->
       </div>
     </main>
+
+    <span id="cart" class="bg-primary text-white rounded-2 d-block">
+      <button
+        class="btn btn-primary p-2 px-4"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseCart"
+        aria-expanded="false"
+        aria-controls="collapseCart"
+      >
+        <i class="bi bi-cart2"></i>
+      </button>
+    </span>
+    <div id="cart-modal" style="max-height: 50px">
+      <div class="collapse collapse-horizontal bg-white p-2" id="collapseCart">
+        <!-- <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="..." />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  €x
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

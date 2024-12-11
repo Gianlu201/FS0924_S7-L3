@@ -1,8 +1,8 @@
 const url = 'https://striveschool-api.herokuapp.com/books';
 const contentBox = document.getElementById('contentBox');
+const collapseCart = document.getElementById('collapseCart');
 let myList = [];
-let btnsAdd = [];
-let btnsRemove = [];
+const myCart = [];
 
 document.addEventListener('load', init());
 
@@ -102,19 +102,82 @@ function loadList() {
   }
 }
 
-function add(asin) {
-  console.log(asin);
+function add(myAsin) {
+  for (let i = 0; i < myList.length; i++) {
+    if (myList[i].asin === myAsin) {
+      myCart.push(myList[i]);
+      break;
+    }
+  }
+  localStorage.setItem('myCart', JSON.stringify(myCart));
+  loadCart();
 }
 
 function remove(myAsin) {
-  let index;
   for (let i = 0; i < myList.length; i++) {
     if (myList[i].asin === myAsin) {
-      index = i;
+      myList.splice(i, 1);
       break;
     }
   }
 
-  myList.splice(index, 1);
   loadList();
+}
+
+function loadCart() {
+  collapseCart.innerHTML = '';
+
+  for (let i = 0; i < myCart.length; i++) {
+    const myCard = document.createElement('div');
+    myCard.classList.add('card', 'mb-3');
+
+    const myRow = document.createElement('div');
+    myRow.classList.add('row', 'g-0');
+
+    const myCol1 = document.createElement('div');
+    myCol1.classList.add('col-md-4');
+
+    const myImg = document.createElement('img');
+    myImg.classList.add('img-fluid', 'rounded-start');
+    myImg.src = myCart[i].img;
+    myCol1.appendChild(myImg);
+
+    myRow.appendChild(myCol1);
+
+    const myCol2 = document.createElement('div');
+    myCol2.classList.add('col-md-8');
+
+    const myDiv = document.createElement('div');
+
+    const myH5 = document.createElement('h5');
+    myH5.classList.add('card-title');
+    myH5.innerText = myCart[i].title;
+    myDiv.appendChild(myH5);
+
+    const myPPrice = document.createElement('p');
+    myPPrice.classList.add('card-text');
+    myPPrice.innerText = `€${myCart[i].price}`;
+    myDiv.appendChild(myPPrice);
+
+    const myBtnRemove = document.createElement('button');
+    myBtnRemove.classList.add('btn', 'btn-danger', 'text-white');
+    myBtnRemove.innerHTML = `<i class="bi bi-trash-fill"></i>`;
+    myBtnRemove.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeFromCart(myCart[i].asin);
+    });
+    myDiv.appendChild(myBtnRemove);
+
+    myCol2.appendChild(myDiv);
+
+    myRow.appendChild(myCol2);
+
+    myCard.appendChild(myRow);
+
+    collapseCart.appendChild(myCard);
+  }
+}
+
+function removeFromCart(myAsin) {
+  console.log(myAsin);
 }
