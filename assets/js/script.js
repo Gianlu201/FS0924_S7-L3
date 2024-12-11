@@ -179,5 +179,12 @@ function loadCart() {
 }
 
 function removeFromCart(myAsin) {
-  console.log(myAsin);
+  for (let i = 0; i < myCart.length; i++) {
+    if (myCart[i].asin === myAsin) {
+      myCart.splice(i, 1);
+      break;
+    }
+  }
+
+  loadCart();
 }
